@@ -1,0 +1,32 @@
+{
+  "name": "latenz",
+  "version": "0.1.0",
+  "description": "Measure response latency when requesting a web host.",
+  "main": "./src/latenz.js",
+  "keywords": [],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --ui tdd"
+  },
+  "author": "Sebastian Müller <mail@sbstjn.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cz-conventional-changelog": "^1.1.6",
+    "mocha": "^2.5.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sbstjn/latenz.git"
+  },
+  "engines": {
+    "node": ">=4.4.0"
+  },
+  "dependencies": {
+    "stopper": "^0.2.4"
+  }
+}
