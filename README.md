@@ -1,6 +1,6 @@
 # latenz
 
-[![Travis](https://img.shields.io/travis/sbstjn/latenz.svg?maxAge=60000)](https://travis-ci.org/sbstjn/latenz) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://github.com/sbstjn/latenz/commits/master) [![npm](https://img.shields.io/npm/dt/latenz.svg?maxAge=60000)](https://www.npmjs.com/package/latenz) [![npm](https://img.shields.io/npm/v/latenz.svg?maxAge=60000)](https://www.npmjs.com/package/latenz)
+[![Travis](https://img.shields.io/travis/sbstjn/latenz.svg?maxAge=600)](https://travis-ci.org/sbstjn/latenz) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://github.com/sbstjn/latenz/commits/master) [![npm](https://img.shields.io/npm/dt/latenz.svg?maxAge=600)](https://www.npmjs.com/package/latenz) [![npm](https://img.shields.io/npm/v/latenz.svg?maxAge=600)](https://www.npmjs.com/package/latenz)
 
 A JavaScript latency analyzer like [updown.io](https://updown.io) or [ping.apex.sh](https://ping.apex.sh). Get information about DNS lookup, connection time to your HTTP server and how long it takes to receive the response.
 
