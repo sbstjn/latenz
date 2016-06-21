@@ -2,7 +2,7 @@
   'use strict';
 
   const label = {
-    'resolve': 'Name Lookup',
+    'lookup': 'Name Lookup',
     'socket': 'Connection',
     'response': 'Response',
     'firstdata': 'First Data',
@@ -18,19 +18,19 @@
   }
 
   const line = function(key, value) {
-    return lpad(key, 18) + ": " + value + "\n";
+    return lpad(key, 18) + ": " + value;
   };
 
   module.exports = {
     line: line,
     action: function(data) {
-      var response = "";
-      var sum = 0;
+      let response = "";
+      let sum = 0;
 
       return new Promise(function(done, fail) {
         data.forEach((item, index) => {
           sum += parseInt(item.time, 10);
-          response += line(label[item.key], rpad(item.time + "ms ", 10) + (index > 0 ? lpad("(" + sum + "ms)", 9) : ""));
+          response += line(label[item.key], rpad(item.time + "ms ", 10) + (index > 0 ? lpad("(" + sum + "ms)", 9) : "")) + "\n";
         });
 
         response += "\n" + line('total', sum + "ms");

@@ -3,43 +3,28 @@
 
   const MeasureDNS = require('./measure/dns.js');
   const MeasureResponse = require('./measure/response.js');
+  const Formatter = require('./formatter');
 
   class Latenz {
     constructor() {
       this.dns = new MeasureDNS();
       this.res = new MeasureResponse();
+      this.frm = new Formatter();
     }
 
-    raw(hostname) {
-      var response = [];
-      return this.measure(hostname).then((data) => {
-        data.forEach((item) => {
-          response.push(item.key + ":" + item.time)
-        });
-
-        return response.join(' ');
-      });
+    formatter(type) {
+      return this.frm.get(type);
     }
 
-    pretty(hostname) {
-      var formatter = require('./formatter/pretty.js');
-
-      return this.measure(hostname).then(
-        formatter.action
-      ).then(
-        (response) => {
-          return "\n" + formatter.line('host', hostname) + "\n" + response;
-        }
-      );
-    }
-
-    measure(hostname) {
+    measure(hostname, options = {}) {
       return Promise.all([
         this.dns.run(hostname),
         this.res.run(hostname)
-      ]).then((data) => {
+      ]).then(data => {
         return data[0].concat(data[1] || []);
-      }).catch((e) => {
+      }).then(
+        this.formatter(options.mode || this.frm.default).action
+      ).catch(e => {
         throw e;
       });
     }

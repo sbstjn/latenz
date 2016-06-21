@@ -16,7 +16,7 @@
       return new Promise((done, fail) => {
         let firstData = false;
 
-        const req = handler.http.request({
+        let req = handler.http.request({
           host: hostname,
           port: 80,
           path: '/',
@@ -30,12 +30,7 @@
         req.on('response', (response) => {
           this.stopper.split('response');
 
-          response.on('data', () => {
-            if (!firstData) {
-              this.stopper.split('firstdata');
-              firstData = true;
-            }
-          });
+          response.on('data', () => {});
 
           response.on('end', () => {
             this.stopper.split('end');

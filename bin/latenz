@@ -1,22 +1,38 @@
 #!/usr/bin/env node
 
+const MODE_RAW = 'raw';
+const MODE_PRETTY = 'pretty';
+
 const Latenz = require('../');
 const l = new Latenz();
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync(__dirname + '/../package.json'));
 
-if (process.argv.length !== 3 || ['-h', '-help', '--help', '--h'].indexOf(process.argv[2]) > -1) {
+if (process.argv.length < 3 || ['-h', '-help', '--help', '--h'].indexOf(process.argv[2]) > -1) {
   console.log("Usage:\n  latenz [domain]\n");
   process.exit();
 }
+
+const hostname = process.argv[2];
 
 if (['-v', '-version', '--version', '--v'].indexOf(process.argv[2]) > -1) {
   console.log('v' + config.version);
   process.exit();
 }
 
-l.pretty(process.argv[2]).then((result) => {
+let mode = MODE_PRETTY;
+if (['-r', '-raw', '--raw', '--r'].indexOf(process.argv[3]) > -1) {
+  mode = MODE_RAW;
+}
+
+l.measure(hostname, {mode: mode}).then(result => {
+  if (mode === MODE_RAW) {
+    return console.log(result);
+  }
+
+  console.log("\n" + l.formatter(MODE_PRETTY).line('Host', hostname) + "\n");
   console.log(result);
+  console.log("");
 }).catch((e) => {
   console.log(e.message)
   process.exit();
