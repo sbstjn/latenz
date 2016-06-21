@@ -18,13 +18,20 @@ $ > latenz sbstjn.com
             total: 81ms
 ```
 
+If you plan to use the result for further scripting, you might a friend of the `raw` result mode, which can be enabled by using `--raw` parameter:
+
+```bash
+$ > latenz sbstjn.com --raw
+985 lookup:443 socket:3 response:534 end:5
+```
+
 Or if you need the result as a JSON inside JavaScript:
 
 ```javascript
 const Latenz = require('latenz');
 const l = new Latenz();
 
-l.measure('sbstjn.com').then((result) => {
+l.measure('sbstjn.com').then(result => {
   console.log(result);
 
   /*
@@ -39,6 +46,18 @@ l.measure('sbstjn.com').then((result) => {
 }).catch((e) => {
   throw e;
 });
+```
+
+You can pass an **options object** to `measure` in order to enable a secure connection, change the used port or set the result mode:
+
+```javascript
+l.measure('sbstjn.com',
+  {
+    secure: true,
+    port: 8443,
+    mode: 'pretty'
+  }
+);
 ```
 
 ### ToDo
