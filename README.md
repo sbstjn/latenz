@@ -2,7 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/sbstjn/latenz.svg?maxAge=600)](https://travis-ci.org/sbstjn/latenz) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://github.com/sbstjn/latenz/commits/master) [![npm](https://img.shields.io/npm/dt/latenz.svg?maxAge=600)](https://www.npmjs.com/package/latenz) [![npm](https://img.shields.io/npm/v/latenz.svg?maxAge=600)](https://www.npmjs.com/package/latenz)
 
-A JavaScript latency analyzer like [updown.io](https://updown.io) or [ping.apex.sh](https://ping.apex.sh). Get information about DNS lookup, connection time to your HTTP server and how long it takes to receive the response.
+A JavaScript latency analyzer like [updown.io](https://updown.io) or [ping.apex.sh](https://ping.apex.sh). Get information about DNS lookup, connection time to your HTTP(S) server and how long it takes to receive the response.
 
 ```bash
 $ > npm install latenz -g
@@ -18,14 +18,22 @@ $ > latenz sbstjn.com
             total: 81ms
 ```
 
-If you plan to use the result for further scripting, you might a friend of the `raw` result mode, which can be enabled by using `--raw` parameter:
+If you plan to use the result for further scripting, you might be a friend of the `raw mode`, which can be enabled by using `--raw` parameter:
 
 ```bash
 $ > latenz sbstjn.com --raw
 985 lookup:443 socket:3 response:534 end:5
 ```
 
-Or if you need the result as a JSON inside JavaScript:
+For using **HTTPS** instead of HTTP (default), just pass the `--secure` parameter to latenz:
+
+```bash
+$ > latenz sbstjn.com --raw --secure
+985 lookup:443 socket:3 response:534 end:5
+```
+
+### JavaScript Usage
+If you need the result as a JSON inside JavaScript:
 
 ```javascript
 const Latenz = require('latenz');
