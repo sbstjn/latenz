@@ -11,7 +11,7 @@ if (process.argv.length !== 3 || ['-h', '-help', '--help', '--h'].indexOf(proces
 }
 
 if (['-v', '-version', '--version', '--v'].indexOf(process.argv[2]) > -1) {
-  console.log(config.version);
+  console.log('v' + config.version);
   process.exit();
 }
 
