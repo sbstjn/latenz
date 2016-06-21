@@ -1,6 +1,6 @@
 {
   "name": "latenz",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Measure response latency when requesting a web host.",
   "main": "./src/latenz.js",
   "keywords": [],
@@ -30,6 +30,6 @@
     "stopper": "^0.4.1"
   },
   "bin": {
-    "latenz": "./bin/latenz.bin.js"
+    "latenz": "./bin/latenz"
   }
 }
