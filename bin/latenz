@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const Latenz = require('../');
+const l = new Latenz();
+const fs = require('fs');
+const config = JSON.parse(fs.readFileSync(__dirname + '/../package.json'));
+
+if (process.argv.length !== 3 || ['-h', '-help', '--help', '--h'].indexOf(process.argv[2]) > -1) {
+  console.log("Usage:\n  latenz [domain]\n");
+  process.exit();
+}
+
+if (['-v', '-version', '--version', '--v'].indexOf(process.argv[2]) > -1) {
+  console.log(config.version);
+  process.exit();
+}
+
+l.pretty(process.argv[2]).then((result) => {
+  console.log(result);
+}).catch((e) => {
+  console.log(e.message)
+  process.exit();
+});

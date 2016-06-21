@@ -27,6 +27,9 @@
     "node": ">=4.4.0"
   },
   "dependencies": {
-    "stopper": "^0.2.4"
+    "stopper": "^0.4.1"
+  },
+  "bin": {
+    "latenz": "./bin/latenz.bin.js"
   }
 }
