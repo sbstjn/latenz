@@ -2,9 +2,10 @@
 
 [![Travis](https://img.shields.io/travis/sbstjn/latenz.svg?maxAge=60000)](https://travis-ci.org/sbstjn/latenz) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://github.com/sbstjn/latenz/commits/master) [![npm](https://img.shields.io/npm/dt/latenz.svg?maxAge=60000)](https://www.npmjs.com/package/latenz) [![npm](https://img.shields.io/npm/v/latenz.svg?maxAge=60000)](https://www.npmjs.com/package/latenz)
 
-A JavaScript latency analyzer like [updown.io](https://updown.io) or [ping.apex.sh](https://ping.apex.sh).
+A JavaScript latency analyzer like [updown.io](https://updown.io) or [ping.apex.sh](https://ping.apex.sh). Get information about DNS lookup, connection time to your HTTP server and how long it takes to receive the response.
 
 ```bash
+$ > npm install latenz -g
 $ > latenz sbstjn.com
 
              host: sbstjn.com
@@ -25,6 +26,16 @@ const l = new Latenz();
 
 l.measure('sbstjn.com').then((result) => {
   console.log(result);
+
+  /*
+    [
+      { key: 'resolve', time: 139 },
+      { key: 'socket', time: 2 },
+      { key: 'response', time: 286 },
+      { key: 'firstdata', time: 1 },
+      { key: 'end', time: 2 }
+    ]
+  */
 }).catch((e) => {
   throw e;
 });
@@ -34,4 +45,4 @@ l.measure('sbstjn.com').then((result) => {
  * HTTP / HTTPS
  * Error handling
  * Support redirects
- * Analyze if numbers are correct
+ * Check numbers
