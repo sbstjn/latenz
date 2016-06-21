@@ -20,7 +20,7 @@
             throw new Error('Lookup for host failed: ' + hostname);
           }
 
-          done([{key: 'resolve', time: this.stopper.measure()}]);
+          done([{key: 'lookup', time: this.stopper.measure()}]);
         });
       });
     }

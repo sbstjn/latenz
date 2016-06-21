@@ -1,41 +1,35 @@
 (() => {
   'use strict';
 
+  const MODE_HTTP = 'http';
+  const MODE_HTTPS = 'https';
+
   const Stopper = require('stopper');
-  const handler = {
-    http: require('http'),
-    https: require('https')
-  };
 
   class MeasureResponse {
     constructor() {
       this.stopper = new Stopper('response');
     }
 
-    runHTTP(hostname) {
+    request(hostname, handler, port) {
       return new Promise((done, fail) => {
         let firstData = false;
 
-        const req = handler.http.request({
+        let req = handler.request({
           host: hostname,
-          port: 80,
+          port: port,
           path: '/',
           method: 'GET'
         });
 
-        req.on('error', () => {
-          throw new Error('Connection to host failed: ' + hostname);
+        req.on('error', (err) => {
+          throw new Error('Connection to host failed: ' + err.message);
         });
 
         req.on('response', (response) => {
           this.stopper.split('response');
 
-          response.on('data', () => {
-            if (!firstData) {
-              this.stopper.split('firstdata');
-              firstData = true;
-            }
-          });
+          response.on('data', () => {});
 
           response.on('end', () => {
             this.stopper.split('end');
@@ -56,8 +50,22 @@
       });
     }
 
+    getHTTP(type) {
+      if ([MODE_HTTP, MODE_HTTPS].indexOf(type) > -1) {
+        return require(type);
+      }
+
+      throw new Error('Unsupported protocol type: ' + type)
+    }
+
     run(hostname, options) {
-      return this.runHTTP(hostname);
+      options = options || {};
+
+      return this.request(
+        hostname,
+        this.getHTTP(options.secure ? MODE_HTTPS : MODE_HTTP),
+        options.port ? options.port : options.secure ? 443 : 80
+      );
     }
   }
 
