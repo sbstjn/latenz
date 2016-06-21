@@ -30,6 +30,6 @@
     "stopper": "^0.4.1"
   },
   "bin": {
-    "latenz": "./bin/latenz"
+    "latenz": "bin/latenz"
   }
 }
