@@ -1,6 +1,6 @@
 {
   "name": "latenz",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Measure response latency when requesting a web host.",
   "main": "./src/latenz.js",
   "keywords": [
