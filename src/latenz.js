@@ -16,7 +16,9 @@
       return this.frm.get(type);
     }
 
-    measure(hostname, options = {}) {
+    measure(hostname, options) {
+      options = options || {};
+      
       return Promise.all([
         this.dns.run(hostname),
         this.res.run(hostname, options)

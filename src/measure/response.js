@@ -58,7 +58,9 @@
       throw new Error('Unsupported protocol type: ' + type)
     }
 
-    run(hostname, options = {}) {
+    run(hostname, options) {
+      options = options || {};
+
       return this.request(
         hostname,
         this.getHTTP(options.secure ? MODE_HTTPS : MODE_HTTP),
