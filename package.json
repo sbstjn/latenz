@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "description": "Measure response latency when requesting a web host.",
   "main": "./src/latenz.js",
-  "keywords": [],
+  "keywords": ["latency", "ping", "status", "updown", "response", "performance", "test"],
   "scripts": {
     "test": "./node_modules/.bin/mocha --ui tdd"
   },
