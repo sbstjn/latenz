@@ -18,6 +18,8 @@ $ > latenz sbstjn.com
             total: 81ms
 ```
 
+![latenz](flow.png)
+
 If you plan to use the result for further scripting, you might be a friend of the `raw mode`, which can be enabled by using `--raw` parameter:
 
 ```bash
