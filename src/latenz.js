@@ -19,7 +19,7 @@
     measure(hostname, options = {}) {
       return Promise.all([
         this.dns.run(hostname),
-        this.res.run(hostname)
+        this.res.run(hostname, options)
       ]).then(data => {
         return data[0].concat(data[1] || []);
       }).then(

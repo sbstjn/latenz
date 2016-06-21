@@ -61,7 +61,6 @@ l.measure('sbstjn.com',
 ```
 
 ### ToDo
- * HTTP / HTTPS
  * Error handling
  * Support redirects
  * Check numbers

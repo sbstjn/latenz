@@ -22,7 +22,7 @@
     });
 
     suite('Measure', function() {
-      test('http://google.com:80', function(done) {
+      test('http://google.com:80 (defaults)', function(done) {
         this.latenz.measure('google.com').then((result) => {
           assert.equal(result.constructor.name, 'Array');
 
@@ -32,8 +32,8 @@
         });
       });
 
-      test('http://google.com:443', function(done) {
-        this.latenz.measure('google.com', {port: 443}).then((result) => {
+      test('http://google.com:80 (options)', function(done) {
+        this.latenz.measure('google.com', {secure: false, port: 80}).then((result) => {
           assert.equal(result.constructor.name, 'Array');
 
           done();
@@ -42,8 +42,8 @@
         });
       });
 
-      test('https://google.com:443', function(done) {
-        this.latenz.measure('google.com', {secure: true}).then((result) => {
+      test('https://sbstjn.com:443 (defaults)', function(done) {
+        this.latenz.measure('sbstjn.com', {secure: true}).then((result) => {
           assert.equal(result.constructor.name, 'Array');
 
           done();
@@ -52,19 +52,8 @@
         });
       });
 
-      test('https://google.com:80', function(done) {
-        this.latenz.measure('google.com', {secure: true, port: 80}).then((result) => {
-          assert.equal(result.constructor.name, 'Array');
-
-          done();
-        }).catch((e) => {
-          done(e);
-        });
-      });
-
-
-      test('https://sbstjn.com:8443', function(done) {
-        this.latenz.measure('google.com', {secure: true, port: 8443}).then((result) => {
+      test('https://sbstjn.com:443 (options)', function(done) {
+        this.latenz.measure('sbstjn.com', {secure: true, port: 443}).then((result) => {
           assert.equal(result.constructor.name, 'Array');
 
           done();
