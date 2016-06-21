@@ -3,6 +3,9 @@
 const MODE_RAW = 'raw';
 const MODE_PRETTY = 'pretty';
 
+const TYPE_HTTP = false;
+const TYPE_HTTPS = true;
+
 const Latenz = require('../');
 const l = new Latenz();
 const fs = require('fs');
@@ -21,11 +24,16 @@ if (['-v', '-version', '--version', '--v'].indexOf(process.argv[2]) > -1) {
 }
 
 let mode = MODE_PRETTY;
-if (['-r', '-raw', '--raw', '--r'].indexOf(process.argv[3]) > -1) {
+if (['-r', '-raw', '--raw', '--r'].indexOf(process.argv[3]) > -1 || ['-r', '-raw', '--raw', '--r'].indexOf(process.argv[4]) > -1) {
   mode = MODE_RAW;
 }
 
-l.measure(hostname, {mode: mode}).then(result => {
+let secure = TYPE_HTTP;
+if (['-s', '-secure', '--secure', '--s'].indexOf(process.argv[3]) > -1 || ['-s', '-secure', '--secure', '--s'].indexOf(process.argv[4]) > -1) {
+  secure = TYPE_HTTPS;
+}
+
+l.measure(hostname, {mode: mode, secure: secure}).then(result => {
   if (mode === MODE_RAW) {
     return console.log(result);
   }
